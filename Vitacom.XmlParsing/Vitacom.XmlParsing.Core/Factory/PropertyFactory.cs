@@ -19,6 +19,22 @@ namespace Vitacom.XmlParsing.Core.Factory
                     {
                         return new AttachmentProperty();
                     }
+                case "categories":
+                    {
+                        return new CategoriesProperty();
+                    }
+                case "tree":
+                    {
+                        return new TreeProperty();
+                    }
+                case "properties":
+                    {
+                        return new PropertiesProperty();
+                    }
+                case "status":
+                    {
+                        return new StatusProperty();
+                    }
                 default:
                     break;
             }

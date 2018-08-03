@@ -11,6 +11,9 @@ namespace Vitacom.XmlParsing.Model
         {
             Images = new List<Image>();
             Attachments = new List<Attachment>();
+            Trees = new List<Tree>();
+            Properties = new List<Properties>();
+            Statuses = new List<Status>();
         }
         public string NedisPartnr { get; set; }
         public string NedisArtId { get; set; }
@@ -23,7 +26,12 @@ namespace Vitacom.XmlParsing.Model
         public string InternetText { get; set; }
         public string GeneralText { get; set; }
         public List<Image> Images { get; set; }
+        public string IntroductionDate { get; set; }
+        public string SerialnumberKeeping { get; set; }
         public List<Attachment> Attachments { get; set; }
+        public List<Tree> Trees { get; set; }
+        public List<Properties> Properties { get; set; }
+        public List<Status> Statuses { get; set; }
 
     }
 }

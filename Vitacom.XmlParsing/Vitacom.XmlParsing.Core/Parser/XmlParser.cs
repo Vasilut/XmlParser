@@ -35,7 +35,9 @@ namespace Vitacom.XmlParsing.Core.Parser
                     Unspsc = item.Element("UNSPSC").Value,
                     HeaderText = item.Element("headerText").Value,
                     InternetText = item.Element("internetText").Value,
-                    GeneralText = item.Element("generalText").Value
+                    GeneralText = item.Element("generalText").Value,
+                    IntroductionDate = item.Element("introductionDate").Value,
+                    SerialnumberKeeping = item.Element("serialnumberKeeping").Value
                 };
 
                 var complexNodes = item.Descendants().Where(node => node.HasElements == true).ToList();

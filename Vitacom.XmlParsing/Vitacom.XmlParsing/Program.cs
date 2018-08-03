@@ -15,7 +15,7 @@ namespace Vitacom.XmlParsing
         {
             List<Product> productLst = new List<Product>();
             string xmlFilePath = @"D:\download\nedis_catalog_2018-07-18_en_US_58960_v1-0_xml.xml\fis.xml";
-            var xmlParser = new XmlParser();
+            IXmlParser xmlParser = new XmlParser();
             productLst = xmlParser.ParseXmlDocument(xmlFilePath);
 
 
