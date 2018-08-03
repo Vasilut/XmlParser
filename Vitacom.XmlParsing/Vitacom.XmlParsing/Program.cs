@@ -59,6 +59,21 @@ namespace Vitacom.XmlParsing
                             Console.WriteLine(itemj);
                         }
                     }
+                    else
+                    if(descendant.Name.LocalName == "categories")
+                    {
+                        var xxl = descendant.Descendants();
+                    }
+                    else
+                    if(descendant.Name.LocalName == "tree")
+                    {
+                        var xxl = descendant.Descendants();
+                    }
+                    else
+                    if(descendant.Name.LocalName == "priceLevels")
+                    {
+                        var xxl = descendant.Descendants();
+                    }
                 }
                 productLst.Add(product);
             }

@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vitacom.XmlParsing.Core\Vitacom.XmlParsing.Core.csproj" />
     <ProjectReference Include="..\Vitacom.XmlParsing.Model\Vitacom.XmlParsing.Model.csproj" />
   </ItemGroup>
 

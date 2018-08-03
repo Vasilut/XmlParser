@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vitacom.XmlParsing", "Vitac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitacom.XmlParsing.Model", "Vitacom.XmlParsing.Model\Vitacom.XmlParsing.Model.csproj", "{8DFD8A20-2053-4D37-875B-6AA53A8F305C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitacom.XmlParsing.Core", "Vitacom.XmlParsing.Core\Vitacom.XmlParsing.Core.csproj", "{65549823-BAC4-4329-B7D3-032BD81D936D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8DFD8A20-2053-4D37-875B-6AA53A8F305C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DFD8A20-2053-4D37-875B-6AA53A8F305C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DFD8A20-2053-4D37-875B-6AA53A8F305C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65549823-BAC4-4329-B7D3-032BD81D936D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65549823-BAC4-4329-B7D3-032BD81D936D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65549823-BAC4-4329-B7D3-032BD81D936D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65549823-BAC4-4329-B7D3-032BD81D936D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
