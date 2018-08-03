@@ -10,6 +10,7 @@ namespace Vitacom.XmlParsing.Model
         public Product()
         {
             Images = new List<Image>();
+            Attachments = new List<Attachment>();
         }
         public string NedisPartnr { get; set; }
         public string NedisArtId { get; set; }
@@ -22,6 +23,7 @@ namespace Vitacom.XmlParsing.Model
         public string InternetText { get; set; }
         public string GeneralText { get; set; }
         public List<Image> Images { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
     }
 }

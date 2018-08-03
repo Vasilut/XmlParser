@@ -6,8 +6,8 @@ using Vitacom.XmlParsing.Model;
 
 namespace Vitacom.XmlParsing.Core.Strategy
 {
-    abstract class PropertyStrategy
+    public abstract class PropertyStrategy
     {
-        public abstract void ProcessProperty(Product product, XElement property);
+        public abstract void ProcessProperty(ref Product product, XElement property);
     }
 }
