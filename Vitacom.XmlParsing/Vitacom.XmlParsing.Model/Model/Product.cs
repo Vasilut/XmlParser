@@ -33,6 +33,6 @@ namespace Vitacom.XmlParsing.Model
         public List<Properties> Properties { get; set; }
         public List<Status> Statuses { get; set; }
         public PriceLevels PriceLevel { get; set; }
-
+        public Stock Stock { get; set; }
     }
 }

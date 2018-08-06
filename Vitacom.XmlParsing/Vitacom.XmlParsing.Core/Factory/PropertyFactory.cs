@@ -39,6 +39,10 @@ namespace Vitacom.XmlParsing.Core.Factory
                     {
                         return new PriceProperty();
                     }
+                case "stock":
+                    {
+                        return new StockProperty();
+                    }
                 default:
                     break;
             }
