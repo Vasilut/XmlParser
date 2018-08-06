@@ -32,6 +32,7 @@ namespace Vitacom.XmlParsing.Model
         public List<Tree> Trees { get; set; }
         public List<Properties> Properties { get; set; }
         public List<Status> Statuses { get; set; }
+        public PriceLevels PriceLevel { get; set; }
 
     }
 }
