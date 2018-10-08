@@ -7,7 +7,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vitacom.XmlParsing.Core\Vitacom.XmlParsing.Core.csproj" />
+    <ProjectReference Include="..\Vitacom.XmlParsing.ModelGeneratedFromDB\Vitacom.XmlParsing.ModelGeneratedFromDB.csproj" />
     <ProjectReference Include="..\Vitacom.XmlParsing.Model\Vitacom.XmlParsing.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="output.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

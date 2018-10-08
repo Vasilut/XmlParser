@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vitacom.XmlParsing", "Vitacom.XmlParsing\Vitacom.XmlParsing.csproj", "{4D11B188-F86C-461A-8984-C79866AEB14E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitacom.XmlParsing.Model", "Vitacom.XmlParsing.Model\Vitacom.XmlParsing.Model.csproj", "{8DFD8A20-2053-4D37-875B-6AA53A8F305C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vitacom.XmlParsing.Model", "Vitacom.XmlParsing.Model\Vitacom.XmlParsing.Model.csproj", "{8DFD8A20-2053-4D37-875B-6AA53A8F305C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitacom.XmlParsing.Core", "Vitacom.XmlParsing.Core\Vitacom.XmlParsing.Core.csproj", "{65549823-BAC4-4329-B7D3-032BD81D936D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vitacom.XmlParsing.Core", "Vitacom.XmlParsing.Core\Vitacom.XmlParsing.Core.csproj", "{65549823-BAC4-4329-B7D3-032BD81D936D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitacom.XmlParsing.ModelGeneratedFromDB", "Vitacom.XmlParsing.ModelGeneratedFromDB\Vitacom.XmlParsing.ModelGeneratedFromDB.csproj", "{4D238E70-4BA2-4AD2-AB0B-68A8DAC5AD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{65549823-BAC4-4329-B7D3-032BD81D936D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65549823-BAC4-4329-B7D3-032BD81D936D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65549823-BAC4-4329-B7D3-032BD81D936D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D238E70-4BA2-4AD2-AB0B-68A8DAC5AD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D238E70-4BA2-4AD2-AB0B-68A8DAC5AD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D238E70-4BA2-4AD2-AB0B-68A8DAC5AD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D238E70-4BA2-4AD2-AB0B-68A8DAC5AD42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

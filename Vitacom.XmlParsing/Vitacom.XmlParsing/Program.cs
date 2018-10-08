@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using Vitacom.XmlParsing.Core.Parser;
 using Vitacom.XmlParsing.Model;
+using Vitacom.XmlParsing.ModelGeneratedFromDB.Models;
 
 namespace Vitacom.XmlParsing
 {
@@ -71,8 +74,48 @@ namespace Vitacom.XmlParsing
             //    }
             //    productLst.Add(product);
             //}
-            
-            Console.WriteLine("Hello World!");
+
+            StringBuilder response = new StringBuilder();
+            using (var db = new VITACOM_CENTRALContext())
+            {
+                var listOfImages = db.ProductImage.ToList();
+
+                foreach (var item in productLst)
+                {
+                    
+                    var productPictureInDb = listOfImages.Where(prod => prod.NedisArtlid?.ToString() == item.NedisArtId && prod.NedisPartnr == item.NedisPartnr).ToList();
+                    if(productPictureInDb == null || productPictureInDb.Count == 0)
+                    {
+                        response.Append("-----").Append(Environment.NewLine);
+                        response.Append($"Product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr} was not found in db").Append(Environment.NewLine);
+                        Console.WriteLine($"Product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr} was not found in db");
+                        continue;
+                    }
+
+                    var listOfPicture = item.Images;
+                    foreach (var picture in listOfPicture)
+                    {
+                        var pictureFound = productPictureInDb.Where(pic => pic.ImageFilename == picture.ImageValue &&
+                                                                    pic.ImageOrder.ToString() == picture.Order &&
+                                                                    pic.ImageType.ToString() == picture.Type).FirstOrDefault();
+
+                        if(pictureFound == null)
+                        {
+                            response.Append("-----").Append(Environment.NewLine);
+                            response.Append($"Picture with name {picture.ImageValue} from the product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr}  was not found in the db ").
+                                     Append(Environment.NewLine);
+                            Console.WriteLine($"Picture with name {picture.ImageValue} from the product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr}  was not found in the db ");
+                        }
+                    }
+                }
+            }
+
+            using (var file = new StreamWriter("output.txt"))
+            {
+                file.Write(response.ToString());
+            }
+
+            Console.WriteLine("Done!");
             var x = 2;
             Console.ReadLine();
         }
