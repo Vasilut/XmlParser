@@ -22,58 +22,10 @@ namespace Vitacom.XmlParsing
             productLst = xmlParser.ParseXmlDocument(xmlFilePath);
 
 
-            //XDocument document = XDocument.Load(@"D:\download\nedis_catalog_2018-07-18_en_US_58960_v1-0_xml.xml\fis.xml");
 
-            //var productList = from prod in document.Descendants("product") select prod;
-            //foreach (var item in productList)
-            //{
-            //    //iteram fiecare produs
-            //    //luam proprietatile simple
-            //    var product = new Product
-            //    {
-            //        NedisPartnr = item.Element("nedisPartnr").Value,
-            //        NedisArtId = item.Element("nedisArtlid").Value,
-            //        VendorPartnr = item.Element("vendorPartnr").Value,
-            //        Brand = item.Element("brand").Value,
-            //        Ean = item.Element("EAN").Value,
-            //        InstraStatCode = item.Element("intrastatCode").Value,
-            //        Unspsc = item.Element("UNSPSC").Value,
-            //        HeaderText = item.Element("headerText").Value,
-            //        InternetText = item.Element("internetText").Value,
-            //        GeneralText = item.Element("generalText").Value
-            //    };
 
-            //    var complexNodes = item.Descendants().Where(node => node.HasElements == true).ToList();
-            //    foreach (var descendant in complexNodes)
-            //    {
-            //        //iteram fiecare proprietate complexa a produsului
-            //        if(descendant.Name.LocalName == "images")
-            //        {
-            //            foreach (var itemj in descendant.Descendants())
-            //            {
-            //                Console.WriteLine(itemj.Value);
-            //                Console.Write(itemj.Attribute("order").Value);
-            //                Console.WriteLine(itemj);
-            //            }
-            //        }
-            //        else
-            //        if(descendant.Name.LocalName == "categories")
-            //        {
-            //            var xxl = descendant.Descendants();
-            //        }
-            //        else
-            //        if(descendant.Name.LocalName == "tree")
-            //        {
-            //            var xxl = descendant.Descendants();
-            //        }
-            //        else
-            //        if(descendant.Name.LocalName == "priceLevels")
-            //        {
-            //            var xxl = descendant.Descendants();
-            //        }
-            //    }
-            //    productLst.Add(product);
-            //}
+            /*
+            #region VerifXMlFile
 
             StringBuilder response = new StringBuilder();
             using (var db = new VITACOM_CENTRALContext())
@@ -111,6 +63,58 @@ namespace Vitacom.XmlParsing
             }
 
             using (var file = new StreamWriter("output.txt"))
+            {
+                file.Write(response.ToString());
+            }
+
+            #endregion
+            */
+
+            StringBuilder response = new StringBuilder();
+            using (var db = new VITACOM_CENTRALContext())
+            {
+                foreach (var item in productLst)
+                {
+                    //iau id-ul din sincr_F1.produs
+                    var relationItem = db.SincrF1produs.Where(sp => sp.Nedisartid.ToString() == item.NedisArtId && sp.Nedispartnr == item.NedisPartnr).FirstOrDefault();
+                    if(relationItem == null)
+                    {
+                        response.Append("-----").Append(Environment.NewLine);
+                        response.Append($"For product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr} we don't have any relation in the db").Append(Environment.NewLine);
+                        Console.WriteLine($"For product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr} we don't have any relation in the db");
+                        continue;
+                    }
+
+                    var databaseCentralId = relationItem.IdVc;
+
+                    //vad cate imagini am in tabelul fisiere_produs pt id-ul gasit
+                    var allImages = db.FisiereProdus.Where(prod => prod.IdProdus == databaseCentralId)?.ToList();
+                    if(allImages == null || allImages.Count == 0)
+                    {
+                        response.Append("-----").Append(Environment.NewLine);
+                        response.Append($"For product with id {databaseCentralId} and nedisid {item.NedisArtId} and nedisPartnID {item.NedisPartnr} we don't have any images in the db").Append(Environment.NewLine);
+                        Console.WriteLine($"For product with id {databaseCentralId} and nedisid {item.NedisArtId} and nedisPartnID {item.NedisPartnr} we don't have any images in the db");
+                        continue;
+                    }
+
+                    var listOfPicturesFromXml = item.Images;
+                    foreach (var picture in listOfPicturesFromXml)
+                    {
+                        //vad cate imagini din xml gasesc
+                        var imageFound = allImages.Where(img => img.Filename == picture.ImageValue &&
+                                                         img.SortOrder.ToString() == picture.Order &&
+                                                         img.IdFisImageType.ToString() == picture.Type).FirstOrDefault();
+                        if(imageFound == null)
+                        {
+                            response.Append("-----").Append(Environment.NewLine);
+                            response.Append($"Image with filename {picture.ImageValue} from product id {databaseCentralId} and nedisid {item.NedisArtId} and nedisPartnID {item.NedisPartnr}  was not found in the database").Append(Environment.NewLine);
+                            Console.WriteLine($"Image with filename {picture.ImageValue} from product id {databaseCentralId} and nedisid {item.NedisArtId} and nedisPartnID {item.NedisPartnr}  was not found in the database");
+                        }
+                    }
+                }
+            }
+
+            using (var file = new StreamWriter("outputpoze.txt"))
             {
                 file.Write(response.ToString());
             }
