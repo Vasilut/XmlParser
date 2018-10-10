@@ -10,14 +10,14 @@ using Vitacom.XmlParsing.ModelGeneratedFromDB.Models;
 
 namespace Vitacom.XmlParsing
 {
-    
+
     public class Program
     {
-        
+
         static void Main(string[] args)
         {
             List<Product> productLst = new List<Product>();
-            string xmlFilePath = @"D:\vitacom db\nedis_catalog_2018-10-02_en_US_58960_v1-0_xml.xml";
+            string xmlFilePath = @"D:\vitacom db\nedis_catalog_2018-10-10_en_US_58960_v1-0_xml.xml";
             IXmlParser xmlParser = new XmlParser();
             productLst = xmlParser.ParseXmlDocument(xmlFilePath);
 
@@ -82,9 +82,9 @@ namespace Vitacom.XmlParsing
 
                 foreach (var item in productLst)
                 {
-                    
+
                     var productPictureInDb = listOfImages.Where(prod => prod.NedisArtlid?.ToString() == item.NedisArtId && prod.NedisPartnr == item.NedisPartnr).ToList();
-                    if(productPictureInDb == null || productPictureInDb.Count == 0)
+                    if (productPictureInDb == null || productPictureInDb.Count == 0)
                     {
                         response.Append("-----").Append(Environment.NewLine);
                         response.Append($"Product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr} was not found in db").Append(Environment.NewLine);
@@ -96,10 +96,10 @@ namespace Vitacom.XmlParsing
                     foreach (var picture in listOfPicture)
                     {
                         var pictureFound = productPictureInDb.Where(pic => pic.ImageFilename == picture.ImageValue &&
-                                                                    pic.ImageOrder.ToString() == picture.Order &&
-                                                                    pic.ImageType.ToString() == picture.Type).FirstOrDefault();
+                                                                    pic.ImageOrder.ToString() == (picture.Order == string.Empty ? "0" : picture.Order) &&
+                                                                    pic.ImageType.ToString() == (picture.Type == string.Empty ? "0" : picture.Type)).FirstOrDefault();
 
-                        if(pictureFound == null)
+                        if (pictureFound == null)
                         {
                             response.Append("-----").Append(Environment.NewLine);
                             response.Append($"Picture with name {picture.ImageValue} from the product with id {item.NedisArtId} and nedisPartnID {item.NedisPartnr}  was not found in the db ").
